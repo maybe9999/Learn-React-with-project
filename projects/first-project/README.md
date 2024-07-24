@@ -34,19 +34,19 @@ import ReactDOM from 'react-dom/client'
 *Están localmente, sino se debería traerlas desde la web.
 
 2) Traer desde el HTML nuestra etiqueta raíz (Lo vemos como si fuera un árbol).
-"""
+```
 const elementRoot = document.getElementById('root')
-"""
+```
 *Esto es un elemento DOM, que es un elemento de la página web.
 
 3) Creamos un objeto raíz donde podremos insertar contenido en base al elementRoot facilitando asi la manipulación del DOM, renderizar y actualizar.
-"""
+```
 const root = ReactDOM.createRoot(elementRoot);
-"""
+```
 *Creación de objeto "raiz" que nos permite renderizar contenido con react en el dom
 
 4) Para agregar elementos al DOM usamos .render(), hará la conversion de sintaxis para mostrar en el html lo que le pasamos como parámetro.
-"""
+```
 root.render(
 <React.Fragment> 
   <button>Boton</button>
@@ -55,12 +55,12 @@ root.render(
   <button>Boton</button>
 </React.Fragment>
 );
-"""
+```
 *render() solo acepta un elemento, entonces hacemos react.fragment para evitar crearnosb una etiqueta que estaría de mas. react.fragment es simplemente un envoltorio que no agregara una etiqueta mas, es un envoltorio transparente, impalpable, inexistente.
 
 ---------------------------------------------------------------------------------
 Aplicación de componentes:
-
+```
 //Componente
 const Button = ({text}) => {
     return <button>{text}</button>
@@ -69,8 +69,10 @@ const Button = ({text}) => {
 const specialButton = ({text}) => {
     return <button>{text}</button>
 }
+```
 
 //Render (Correcto, es declarativo por que le decimo que queremos mostrar un boton)
+```
 root.render(
     <React.Fragment> 
         <Button text="Boton 1"/> //Los paarametros se lo pasamos como un atributo.
@@ -78,8 +80,10 @@ root.render(
         <Button text="Boton 1"/>
     </React.Fragment>
 );
+```
 
 //Render (Incorrecto, React solo reconoce PascalCase como componentes, esto lo renderizara como un elemento html y no como un componente)
+```
 root.render{
     <React.Fragment>
         <specialButton text="Boton 1"/>
@@ -87,13 +91,16 @@ root.render{
         <specialButton text="Boton 1"/>
     </React.Fragment>
 }
+```
 
 //Render (Incorrecto, es imperativo ya que lo estamos diciendo que queremos crear un boton)
+```
 root.render(
     <React.Fragment> 
         {Button({ text: "Boton 1"})}
     </React.Fragment>
 );
+```
 ---------------------------------------------------------------------------------
 
 
