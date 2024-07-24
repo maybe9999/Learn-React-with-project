@@ -17,12 +17,13 @@ Currently, two official plugins are available:
 - Componentes: PascalCase (!Importante)
 - Props: camelCase
 - Propiedades de style css desde COMPONENTES en JSX= camelCase (!Importante, se lo debemos pasar como objeto).
-- Atributos:
-      -className(valor de atributo): No hay estilo de nomenclatura impuesta, se puede usar lo que uno quiera, sugerencia kebab-case.
+- Atributos:</br>
+      - className(valor de atributo): No hay estilo de nomenclatura impuesta, se puede usar lo que uno quiera, sugerencia kebab-case.
 
 ---------------------------------------------------------------------------------
 ### Curiosidades:
-Al definir el atributo class desde jsx, no podemos usar class, ya que es una palabra reservada. En su lugar debemos usar className
+- Al definir el atributo class desde jsx, no podemos usar class, ya que es una palabra reservada. En su lugar debemos usar className.
+- 
 
 ---------------------------------------------------------------------------------
 ### Pasos básicos para crear un sitio react:
