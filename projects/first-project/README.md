@@ -45,20 +45,20 @@ const elementRoot = document.getElementById('root')
 ```
 const root = ReactDOM.createRoot(elementRoot);
 ```
-   * Creación de objeto "raiz" que nos permite renderizar contenido con react en el dom
+   * Creación de objeto "raíz" que nos permite renderizar contenido con react en el dom
 
 4) Para agregar elementos al DOM usamos ```.render()```, hará la conversion de sintaxis para mostrar en el HTML lo que le pasamos como parámetro.
 ```
 root.render(
 <React.Fragment> 
-  <button>Boton</button>
-  <button>Boton</button>
-  <button>Boton</button>
-  <button>Boton</button>
+  <button>Botón</button>
+  <button>Botón</button>
+  <button>Botón</button>
+  <button>Botón</button>
 </React.Fragment>
 );
 ```
-   * ```render()``` acepta un elemento, entonces usamos ```<react.fragment>``` para evitar crearnos una etiqueta inecesaria que estaría de más en el codigo. ```<react.fragment>``` es simplemente un envoltorio que NO agregara una etiqueta más, es un envoltorio transparente, impalpable, inexistente.
+   * ```render()``` acepta un elemento, entonces usamos ```<react.fragment>``` para evitar crearnos una etiqueta innecesaria que estaría de más en el código. ```<react.fragment>``` es simplemente un envoltorio que NO agregara una etiqueta más, es un envoltorio transparente, impalpable, inexistente.
 
 ---------------------------------------------------------------------------------
 ### Aplicación de componentes:
@@ -77,40 +77,40 @@ const specialButton = ({text}) => {
 
 **Renderizado:**
 
-**Incorrecto**, React solo reconoce **PascalCase** como componente, el codigo del ejemplo lo renderizara como un elemento HTML y NO como un componente:
+**Incorrecto**, React solo reconoce **PascalCase** como componente, el código del ejemplo lo renderiza como un elemento HTML y NO como un componente:
 ```
 root.render{
     <React.Fragment>
-        <specialButton text="Boton 1"/>
-        <specialButton text="Boton 1"/>
-        <specialButton text="Boton 1"/>
+        <specialButton text="Botón 1"/>
+        <specialButton text="Botón 1"/>
+        <specialButton text="Botón 1"/>
     </React.Fragment>
 }
 ```
 
-**Incorrecto**, lo estamos definiendo de forma **imperativa** ya que le estamos diciendo que queremos **crear** un boton:
+**Incorrecto**, lo estamos definiendo de forma **imperativa** ya que le estamos diciendo que queremos **crear** un botón:
 ```
 root.render(
     <React.Fragment> 
-        {Button({ text: "Boton 1"})}
+        {Button({ text: "Botón 1"})}
     </React.Fragment>
 );
 ```
 
-**Correcto**, lo estamos definiendo de forma **declarativa** por que le decimos que queremos **mostrar** un boton (Button apunta al componente que definimos).
+**Correcto**, lo estamos definiendo de forma **declarativa** por que le decimos que queremos **mostrar** un botón (Button apunta al componente que definimos).
 ```
 root.render(
     <React.Fragment> 
-        <Button text="Boton 1"/> //Los paarametros se lo pasamos como un atributo.
-        <Button text="Boton 1"/>
-        <Button text="Boton 1"/>
+        <Button text="Botón 1"/> //Los parámetros se lo pasamos como un atributo.
+        <Button text="Botón 1"/>
+        <Button text="Botón 1"/>
     </React.Fragment>
 );
 ```
 
 ---------------------------------------------------------------------------------
 Llaves {}:
-Solo se deben poner expresiones que devuelven un resultado: (funciones(), variables, valores(2, "re"); y no declaraciones: (if).
+Solo se deben poner expresiones que devuelven un resultado: (funciones(), variables, valores(2, "re")); y no declaraciones: (if).
 
 
 ---------------------------------------------------------------------------------

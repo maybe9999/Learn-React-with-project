@@ -9,5 +9,5 @@ const elementRoot = document.getElementById('root')
 const root = ReactDOM.createRoot(elementRoot);
 
 root.render(
-  <App text="hola"/>
+  <App />
 );
