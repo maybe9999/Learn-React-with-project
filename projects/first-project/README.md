@@ -62,19 +62,22 @@ root.render(
 
 ---------------------------------------------------------------------------------
 ### Aplicación de componentes:
+**Componentes:**
 ```
-//Componentes
+//Componente BIEN definido
 const Button = ({text}) => {
     return <button>{text}</button>
 }
 
+//Componente MAL definido
 const specialButton = ({text}) => {
     return <button>{text}</button>
 }
 ```
 
+**Renderizado:**
 
-Incorrecto, React solo reconoce PascalCase como componentes, el codigo del ejemplo lo renderizara como un elemento HTML y NO como un componente.
+**Incorrecto**, React solo reconoce **PascalCase** como componente, el codigo del ejemplo lo renderizara como un elemento HTML y NO como un componente:
 ```
 root.render{
     <React.Fragment>
@@ -85,7 +88,7 @@ root.render{
 }
 ```
 
-Incorrecto, es imperativo ya que le estamos diciendo que queremos crear un boton
+**Incorrecto**, lo estamos definiendo de forma **imperativa** ya que le estamos diciendo que queremos **crear** un boton:
 ```
 root.render(
     <React.Fragment> 
@@ -94,7 +97,7 @@ root.render(
 );
 ```
 
-Correcto, es declarativo por que le decimos que queremos mostrar un boton.
+**Correcto**, lo estamos definiendo de forma **declarativa** por que le decimos que queremos **mostrar** un boton (Button apunta al componente que definimos).
 ```
 root.render(
     <React.Fragment> 
@@ -113,12 +116,12 @@ Solo se deben poner expresiones que devuelven un resultado: (funciones(), variab
 ---------------------------------------------------------------------------------
 ### Definiciones, utilidades y analogías:
 
-- COMPONENTES:
-    - Definición: Un componente es una función que crea un elemento 
-    - Utilidades: Al usar componentes nos evitamos tener que crear multiples elementos iguales en el caso de necesitar multiples elementos, estamos modulando y reutilizando código.
-    - Analogía: Un componente es como una pieza de lego que diseñamos nosotros con un diseño único, esta pieza de lego la podemos reutilizar, personalizar, ajustar y adaptar a nuestras necesidades de forma dinámica en base a lo que necesitemos.
-    - Sintaxis: Los nombres de los componentes deben ser: no "createButton" sino "Button".
+- **COMPONENTES**:
+    - **Definición**: Un componente es una función que crea un elemento 
+    - **Utilidades**: Al usar componentes nos evitamos tener que crear multiples elementos iguales en el caso de necesitar multiples elementos, estamos modulando y reutilizando código.
+    - **Analogía**: Un componente es como una pieza de lego que diseñamos nosotros con un diseño único, esta pieza de lego la podemos reutilizar, personalizar, ajustar y adaptar a nuestras necesidades de forma dinámica en base a lo que necesitemos.
+    - **Sintaxis**: Los nombres de los componentes deben ser: no "createButton" sino "Button".
     React no tiene forma de diferenciar si lo que esta escrito es un componente o un elemento HTML, la forma que tiene para diferenciarlo es usando PascalCase.
-    - Arquitectura: se lo suelen crear de forma modular en un archivo separado.
+    - **Arquitectura**: se lo suelen crear de forma modular en un archivo separado.
 
 - 
