@@ -8,23 +8,24 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-#Notas de clase y conceptos:
+---------------------------------------------------------------------------------
 
+# Notas de clase y conceptos:
 
 ---------------------------------------------------------------------------------
-Nomenclaturas:
+### Nomenclaturas:
 - Componentes: PascalCase (!Importante)
 - Props: camelCase
-- Propiedades de style css desde COMPONENTES  en JSX= camelCase (!Importante, se lo debemos pasar como objeto).
+- Propiedades de style css desde COMPONENTES en JSX= camelCase (!Importante, se lo debemos pasar como objeto).
 - Atributos:
-    className(valor de atributo): No hay estilo de nomenclatura impuesta, se puede usar lo que uno quiera, sugerencia kebab-case.
+      -className(valor de atributo): No hay estilo de nomenclatura impuesta, se puede usar lo que uno quiera, sugerencia kebab-case.
 
 ---------------------------------------------------------------------------------
-Curiosidades:
+### Curiosidades:
 Al definir el atributo class desde jsx, no podemos usar class, ya que es una palabra reservada. En su lugar debemos usar className
 
 ---------------------------------------------------------------------------------
----Pasos básicos para crear un sitio react:
+### Pasos básicos para crear un sitio react:
 
 1) Importar las bibliotecas requeridas para empezar el proyecto.
 """
@@ -59,7 +60,7 @@ root.render(
 *render() solo acepta un elemento, entonces hacemos react.fragment para evitar crearnosb una etiqueta que estaría de mas. react.fragment es simplemente un envoltorio que no agregara una etiqueta mas, es un envoltorio transparente, impalpable, inexistente.
 
 ---------------------------------------------------------------------------------
-Aplicación de componentes:
+### Aplicación de componentes:
 ```
 //Componente
 const Button = ({text}) => {
@@ -101,17 +102,14 @@ root.render(
     </React.Fragment>
 );
 ```
----------------------------------------------------------------------------------
-
-
 
 ---------------------------------------------------------------------------------
 Llaves {}:
-Solo se pueden poner Expresiones "fun(), variables, valores(2, "re")" y no declaraciones (if).
+Solo se deben poner Expresiones "fun(), variables, valores(2, "re")" y no declaraciones (if).
 
 
 ---------------------------------------------------------------------------------
-Definiciones, utilidades y analogías:
+### Definiciones, utilidades y analogías:
 
 - COMPONENTES:
     - Definición: Un componente es una función que crea un elemento 
