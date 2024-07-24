@@ -58,7 +58,7 @@ root.render(
 </React.Fragment>
 );
 ```
-   * ```render()``` acepta un elemento, entonces usamos ```<react.fragment>``` para evitar crearnos una etiqueta que inecesaria que estaría de más en el codigo. ```<react.fragment>``` es simplemente un envoltorio que NO agregara una etiqueta más, es un envoltorio transparente, impalpable, inexistente.
+   * ```render()``` acepta un elemento, entonces usamos ```<react.fragment>``` para evitar crearnos una etiqueta inecesaria que estaría de más en el codigo. ```<react.fragment>``` es simplemente un envoltorio que NO agregara una etiqueta más, es un envoltorio transparente, impalpable, inexistente.
 
 ---------------------------------------------------------------------------------
 ### Aplicación de componentes:
