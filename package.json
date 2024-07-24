@@ -1,0 +1,19 @@
+{
+  "name": "learn-react-with-project",
+  "version": "1.0.0",
+  "description": "Un repositorio echo para aprender y practicar React mediante un proyecto.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maybe9999/Learn-React-with-project.git"
+  },
+  "author": "maybe9999",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maybe9999/Learn-React-with-project/issues"
+  },
+  "homepage": "https://github.com/maybe9999/Learn-React-with-project#readme"
+}
