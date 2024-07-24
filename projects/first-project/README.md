@@ -32,19 +32,19 @@ Al definir el atributo class desde jsx, no podemos usar class, ya que es una pal
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 """
-*Están localmente, sino se debería traerlas desde la web.
+   * Están localmente, sino se debería traerlas desde la web.
 
 2) Traer desde el HTML nuestra etiqueta raíz (Lo vemos como si fuera un árbol).
 ```
 const elementRoot = document.getElementById('root')
 ```
-*Esto es un elemento DOM, que es un elemento de la página web.
+   * Esto es un elemento DOM, que es un elemento de la página web.
 
 3) Creamos un objeto raíz donde podremos insertar contenido en base al elementRoot facilitando asi la manipulación del DOM, renderizar y actualizar.
 ```
 const root = ReactDOM.createRoot(elementRoot);
 ```
-*Creación de objeto "raiz" que nos permite renderizar contenido con react en el dom
+   * Creación de objeto "raiz" que nos permite renderizar contenido con react en el dom
 
 4) Para agregar elementos al DOM usamos .render(), hará la conversion de sintaxis para mostrar en el html lo que le pasamos como parámetro.
 ```
@@ -57,12 +57,12 @@ root.render(
 </React.Fragment>
 );
 ```
-*render() solo acepta un elemento, entonces hacemos react.fragment para evitar crearnosb una etiqueta que estaría de mas. react.fragment es simplemente un envoltorio que no agregara una etiqueta mas, es un envoltorio transparente, impalpable, inexistente.
+   * render() solo acepta un elemento, entonces hacemos react.fragment para evitar crearnosb una etiqueta que estaría de mas. react.fragment es simplemente un envoltorio que no agregara una etiqueta mas, es un envoltorio transparente, impalpable, inexistente.
 
 ---------------------------------------------------------------------------------
 ### Aplicación de componentes:
 ```
-//Componente
+//Componentes
 const Button = ({text}) => {
     return <button>{text}</button>
 }
@@ -72,18 +72,8 @@ const specialButton = ({text}) => {
 }
 ```
 
-//Render (Correcto, es declarativo por que le decimo que queremos mostrar un boton)
-```
-root.render(
-    <React.Fragment> 
-        <Button text="Boton 1"/> //Los paarametros se lo pasamos como un atributo.
-        <Button text="Boton 1"/>
-        <Button text="Boton 1"/>
-    </React.Fragment>
-);
-```
 
-//Render (Incorrecto, React solo reconoce PascalCase como componentes, esto lo renderizara como un elemento html y no como un componente)
+Incorrecto, React solo reconoce PascalCase como componentes, el codigo del ejemplo lo renderizara como un elemento HTML y NO como un componente.
 ```
 root.render{
     <React.Fragment>
@@ -94,7 +84,7 @@ root.render{
 }
 ```
 
-//Render (Incorrecto, es imperativo ya que lo estamos diciendo que queremos crear un boton)
+Incorrecto, es imperativo ya que le estamos diciendo que queremos crear un boton
 ```
 root.render(
     <React.Fragment> 
@@ -103,9 +93,20 @@ root.render(
 );
 ```
 
+Correcto, es declarativo por que le decimos que queremos mostrar un boton.
+```
+root.render(
+    <React.Fragment> 
+        <Button text="Boton 1"/> //Los paarametros se lo pasamos como un atributo.
+        <Button text="Boton 1"/>
+        <Button text="Boton 1"/>
+    </React.Fragment>
+);
+```
+
 ---------------------------------------------------------------------------------
 Llaves {}:
-Solo se deben poner Expresiones "fun(), variables, valores(2, "re")" y no declaraciones (if).
+Solo se deben poner expresiones que devuelven un resultado: (funciones(), variables, valores(2, "re"); y no declaraciones: (if).
 
 
 ---------------------------------------------------------------------------------
