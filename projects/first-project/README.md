@@ -16,7 +16,7 @@ Currently, two official plugins are available:
 ### Nomenclaturas:
 - Componentes: PascalCase (!Importante)
 - Props: camelCase
-- Propiedades de style css desde COMPONENTES en JSX= camelCase (!Importante, se lo debemos pasar como objeto).
+- Propiedades de style css desde COMPONENTES en JSX: camelCase. (!Importante, se lo debemos pasar como objeto).
 - Atributos:</br>
       - className(valor de atributo): No hay estilo de nomenclatura impuesta, se puede usar lo que uno quiera, sugerencia kebab-case.
 
@@ -29,10 +29,10 @@ Currently, two official plugins are available:
 ### Pasos básicos para crear un sitio react:
 
 1) Importar las bibliotecas requeridas para empezar el proyecto.
-"""
+```
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-"""
+```
    * Están localmente, sino se debería traerlas desde la web.
 
 2) Traer desde el HTML nuestra etiqueta raíz (Lo vemos como si fuera un árbol).
@@ -47,7 +47,7 @@ const root = ReactDOM.createRoot(elementRoot);
 ```
    * Creación de objeto "raiz" que nos permite renderizar contenido con react en el dom
 
-4) Para agregar elementos al DOM usamos .render(), hará la conversion de sintaxis para mostrar en el html lo que le pasamos como parámetro.
+4) Para agregar elementos al DOM usamos ```.render()```, hará la conversion de sintaxis para mostrar en el HTML lo que le pasamos como parámetro.
 ```
 root.render(
 <React.Fragment> 
@@ -58,7 +58,7 @@ root.render(
 </React.Fragment>
 );
 ```
-   * render() solo acepta un elemento, entonces hacemos react.fragment para evitar crearnosb una etiqueta que estaría de mas. react.fragment es simplemente un envoltorio que no agregara una etiqueta mas, es un envoltorio transparente, impalpable, inexistente.
+   * ```render()``` acepta un elemento, entonces usamos ```<react.fragment>``` para evitar crearnos una etiqueta que inecesaria que estaría de más en el codigo. ```<react.fragment>``` es simplemente un envoltorio que NO agregara una etiqueta más, es un envoltorio transparente, impalpable, inexistente.
 
 ---------------------------------------------------------------------------------
 ### Aplicación de componentes:
