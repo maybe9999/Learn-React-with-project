@@ -58,7 +58,7 @@ root.render(
 </React.Fragment>
 );
 ```
-   * ```render()``` acepta un elemento, entonces usamos ```<react.fragment>``` para evitar crearnos una etiqueta innecesaria que estaría de más en el código. ```<react.fragment>``` es simplemente un envoltorio que NO agregara una etiqueta más, es un envoltorio transparente, impalpable, inexistente.
+   * ```render()``` acepta un elemento, entonces usamos ```<react.fragment>``` para evitar crearnos una etiqueta innecesaria que estaría de más en el código. ```<react.fragment>``` es simplemente un envoltorio que NO agregara una etiqueta más, es un envoltorio transparente, impalpable, inexistente. Una version simplificada de ```<React.Fragment>``` es ```<> elementos aca </>```, esto es lo mismo pero simplificado.
 
 ---------------------------------------------------------------------------------
 ### Aplicación de componentes:
@@ -109,9 +109,36 @@ root.render(
 ```
 
 ---------------------------------------------------------------------------------
-Llaves {}:
-Solo se deben poner expresiones que devuelven un resultado: (funciones(), variables, valores(2, "re")); y no declaraciones: (if).
+### Datos útiles:
 
+**Llaves ```{ }```:**
+Solo se deben poner entre llaves expresiones que devuelven un resultado: (funciones(), variables, valores(2, "re")); y no declaraciones: (if).
+
+**Diferencias entre Componentes y Elementos:**
+- **Componentes**: Son **funciones** que **devuelven elementos**.
+- **Elementos**: Es el elemento que react **renderiza** en el **DOM**.
+
+**Props especiales:**
+- **children**: Es el contenido que se le pasa a un componente, este contenido sera el **hijo** o todo lo que **envuelve** dicho elemento, **incluido texto**.
+
+**Errores comunes:**
+- Modificar la props directamente. Razon: Las **props deben ser inmutables**.
+
+Incorrecto, (Se modifica la props), el que funcione no significa que este bien:
+```
+export function ButtonCard({name, surname, email}){
+    name = `@${name}`;
+    return <div>{name}</div>
+}
+```
+
+Correcto, no se modifica la props. Funciona y esta bien ya que Rect tiene la seguridad de lo que esta renderizando.
+```
+export function ButtonCard({name, surname, email}){
+    const nameLocal = `@${name}`;
+    return <div>{nameLocal}</div>
+}
+```
 
 ---------------------------------------------------------------------------------
 ### Definiciones, utilidades y analogías:
