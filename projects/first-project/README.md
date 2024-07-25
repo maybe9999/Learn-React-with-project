@@ -23,7 +23,7 @@ Currently, two official plugins are available:
 ---------------------------------------------------------------------------------
 ### Curiosidades:
 - Al definir el atributo class desde jsx, no podemos usar class, ya que es una palabra reservada. En su lugar debemos usar className.
-- 
+- Es posible hacer comentarios en el return donde se devuelve el código para renderizar de la siguiente forma {/* comentario*/}, si se usa // se mostrara el comentario en el html...
 
 ---------------------------------------------------------------------------------
 ### Pasos básicos para crear un sitio react:
@@ -111,34 +111,119 @@ root.render(
 ---------------------------------------------------------------------------------
 ### Datos útiles:
 
-**Llaves ```{ }```:**
+- **Llaves ```{ }```:**
 Solo se deben poner entre llaves expresiones que devuelven un resultado: (funciones(), variables, valores(2, "re")); y no declaraciones: (if).
 
-**Diferencias entre Componentes y Elementos:**
-- **Componentes**: Son **funciones** que **devuelven elementos**.
-- **Elementos**: Es el elemento que react **renderiza** en el **DOM**.
+- **Diferencias entre Componentes y Elementos:**
+    - **Componentes**: Son **funciones** que **devuelven elementos**.
+    - **Elementos**: Es el elemento que react **renderiza** en el **DOM**.
 
-**Props especiales:**
-- **children**: Es el contenido que se le pasa a un componente, este contenido sera el **hijo** o todo lo que **envuelve** dicho elemento, **incluido texto**.
+-**Props especiales:**
+    - **children**: Es el contenido que se le pasa a un componente, este contenido sera el **hijo** o todo lo que **envuelve** dicho elemento, **incluido el texto**.
+    - **ejemplo**:
+    ```
+    function UserCard({children, name, surname}){
+        return (
+        <>
+            <div>{children}</div>
+            <div>{name}</div>
+            <div>{surname}</div>
+        </>)
+    }
 
-**Errores comunes:**
-- Modificar la props directamente. Razon: Las **props deben ser inmutables**.
+    function App(){
+        return (
+            <section>
+                <UserCard name="Pablo" surname="Lopez">
+                    este es el children que se capturara en params, es indiferente si es una etiqueta o cadena de texto
+                </UserCard>
+            </section>
+        )
+    }
+    ```
 
-Incorrecto, (Se modifica la props), el que funcione no significa que este bien:
-```
-export function ButtonCard({name, surname, email}){
-    name = `@${name}`;
-    return <div>{name}</div>
-}
-```
+- **Rest opereator {... name}:**
+    - Nos permiten pasar **todas las propiedades de un objeto** que esta definido en una variable **como props a un componente**, a veces es mejor ser declarativo en ves de pasar valores de esta forma:
+    ```
+    function App(){
+        const user1 = {isFollowing: true, userName:"joker"}
+        return (
+            <section>
+                <UserCard {... user1}>
+                    este es el children que se capturara en params, es indiferente si es una etiqueta o cadena de texto
+                </UserCard>
+            </section>
+        )
+    }
+    ```
+    Contras:
+    - Muchas veces se envía información que no es necesaria
+    - Puede hacer que el componente por temas de optimización de se rerenderize sin necesidad
+    - Hace mas difícil de saber/leer que información le esta llegando al usuario
 
-Correcto, no se modifica la props. Funciona y esta bien ya que Rect tiene la seguridad de lo que esta renderizando.
-```
-export function ButtonCard({name, surname, email}){
-    const nameLocal = `@${name}`;
-    return <div>{nameLocal}</div>
-}
-```
+- **Errores comunes:**
+    - **Props:** Modificar la props directamente. Razón: Las **props deben ser inmutables**.
+        - Ejemplo:
+        **Incorrecto**, (Se modifica la props), el que funcione no significa que este bien:
+        ```
+        export function ButtonCard({name, surname, email}){
+            name = `@${name}`;
+            return <div>{name}</div>
+        }
+        ```
+        
+        **Correcto**, no se modifica la props. Funciona y esta bien ya que se tiene seguridad sobre lo que se esta renderizando:
+        ```
+        export function ButtonCard({name, surname, email}){
+            const nameLocal = `@${name}`;
+            return <div>{nameLocal}</div>
+        }
+        ```
+    - **Comentarios:** Usar comentarios en la sección donde devolvemos código a renderizar usando //.
+        - Ejemplo:
+        **Incorrecto**, (Se usa // para comentar el código):
+        ```
+        function UserCard({children, name, surname, isFollowing}){
+            return (
+            <>
+                //Comentario incorrecto, el comentario se mostrara en el HTML
+                <div>{children}</div>
+                <div>{name}</div>
+                <div>{surname}</div>
+            </>
+            )
+        }
+        ```
+
+        **Correcto**, (Se usa {/**/} para comentar el código):
+        ```
+        function UserCard({children, name, surname, isFollowing}){
+            return (
+            <>
+                {/*, el comentario NO mostrara en el HTML*/}
+                <div>{children}</div>
+                <div>{name}</div>
+                <div>{surname}</div>
+            </>
+            )
+        }
+        ```
+
+- **Rendirizado condicional:**
+    - Dependiendo de un condición el código se va a mostrar de determinada forma o no.
+    - Ejemplo: 
+    ```
+    function UserCard({children, name, surname, isFollowing}){
+        const botonEstado = isFollowing ? "nombre-de-clase-de-elemento otro-nombre-si-hay-follow" : "nombre-de-clase-de-elemento";
+        return (
+        <>
+            <div className={botonEstado}>{children}</div>
+            <div>{name}</div>
+            <div>{surname}</div>
+        )
+    }
+    ```
+
 
 ---------------------------------------------------------------------------------
 ### Definiciones, utilidades y analogías:
@@ -147,8 +232,37 @@ export function ButtonCard({name, surname, email}){
     - **Definición**: Un componente es una función que crea un elemento 
     - **Utilidades**: Al usar componentes nos evitamos tener que crear multiples elementos iguales en el caso de necesitar multiples elementos, estamos modulando y reutilizando código.
     - **Analogía**: Un componente es como una pieza de lego que diseñamos nosotros con un diseño único, esta pieza de lego la podemos reutilizar, personalizar, ajustar y adaptar a nuestras necesidades de forma dinámica en base a lo que necesitemos.
-    - **Sintaxis**: Los nombres de los componentes deben ser: no "createButton" sino "Button".
-    React no tiene forma de diferenciar si lo que esta escrito es un componente o un elemento HTML, la forma que tiene para diferenciarlo es usando PascalCase.
-    - **Arquitectura**: se lo suelen crear de forma modular en un archivo separado.
+    - **Sintaxis - Reglas de uso**: Los nomenclatura de los nombres en los componentes deben ser: ```PascalCase```. React no tiene forma de diferenciar si lo que esta escrito es un componente o un elemento HTML, la forma que tiene para diferenciarlo es usando ```PascalCase```.
+    - **Arquitectura**: Se lo suelen crear de forma modular en un archivo separado.
+    - **Ejemplo de uso**:
+    ```
+    const Button = ({text}) => {
+        return <button>{text}</button>
+    }
+    ```
 
-- 
+- **Hoks (Estados):**
+    - **Definición**: Son funciones que se ejecutan cuando se renderiza un componente.
+    - **Utilidad**: Permiten añadir funcionalidades a los componentes de React. Ejecutar código arbitrario cuando se ocurre determinadas cosas en los componentes. Son exclusivas de cada instancia de componente, no afecta a otras instancias del mismo componente.
+    - **Analogía**: Son como nuevas piezas de Lego que puedes conectar directamente a tu construcción actual para modificar funcionalidades extra, como luces, movimiento, o piezas decorativas, sin necesidad de reconstruir todo el modelo desde el principio.
+    - **Sintaxis - Reglas de uso**: Se requiere importar la función. Pasarle un parámetro y desestructurar el array que da como output en 2 variables. La primera el valor y la segunda la que modifica el valor(crear callback).
+    - **Arquitectura**: Se lo crea dentro del mismo componente donde se lo usa.
+    - **Ejemplo de uso**: 
+    ```
+    import {useState} from "react"
+    function Follow({isFollowing}){
+        //Version extendida
+        const state = useState(isFollowing); // True  or False
+        const isFollow = state[0]; //Valor del estado
+        const setIsFollow = state[1]; //Interruptor (Función) para cambiar el estado.
+
+        //Version corta
+        const [isFollow, setIsFollow] = useState(isFollow); //Version abreviada, desestructurada.
+
+        const handleClick = () => setIsFollow(!isFollow);
+
+        return <Button onClick={handleClick()}>{isfollow}</Button>
+    }
+    ```
+
+- **Ej**
