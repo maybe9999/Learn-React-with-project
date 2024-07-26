@@ -1,16 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-
----------------------------------------------------------------------------------
-
-# Notas de clase y conceptos:
+# Notas de clase y conceptos (React 1):
 
 ---------------------------------------------------------------------------------
 ### Nomenclaturas:
@@ -18,12 +6,12 @@ Currently, two official plugins are available:
 - Props: camelCase
 - Propiedades de style css desde COMPONENTES en JSX: camelCase. (!Importante, se lo debemos pasar como objeto).
 - Atributos:</br>
-      - className(valor de atributo): No hay estilo de nomenclatura impuesta, se puede usar lo que uno quiera, sugerencia kebab-case.
+    - className(valor de atributo): No hay estilo de nomenclatura impuesta, se puede usar lo que uno quiera, sugerencia kebab-case.
 
 ---------------------------------------------------------------------------------
 ### Curiosidades:
 - Al definir el atributo class desde jsx, no podemos usar class, ya que es una palabra reservada. En su lugar debemos usar className.
-- Es posible hacer comentarios en el return donde se devuelve el código para renderizar de la siguiente forma {/* comentario*/}, si se usa // se mostrara el comentario en el html...
+- Es posible hacer comentarios en el return, donde se devuelve el código para renderizar, de la siguiente forma {/* comentario*/}, si se usa // se mostrara el comentario en el html...
 
 ---------------------------------------------------------------------------------
 ### Pasos básicos para crear un sitio react:
@@ -265,4 +253,29 @@ Solo se deben poner entre llaves expresiones que devuelven un resultado: (funcio
     }
     ```
 
-- **Ej**
+- **key:**
+    - **Definición**: Es un identificador **único** que asignamos a un componente cuando lo llamamos.
+    - **Utilidad**: Es necesario para que react pueda identificar los componentes y saber si dicho componente ya estaba renderizado o no, es especialmente util cuando trabajamos con listas de datos...
+    - **Analogía**: Es como un numero de pieza que actúa como identificador único que le asignamos a una pieza de lego.
+    - **Sintaxis - Reglas de uso**: Se lo asigna como propiedad a un componente. Debe ser único y constante, es decir dicho elemento siempre debe tener ese identificador y no cambiar.
+    - **Arquitectura**: Se lo asigna en el momento de llamar al componente cuando le pasamos una lista de elementos para que cree diversos componentes.
+    - **Ejemplo de uso**:
+    ```
+    const list=[
+        {id:1, name:"Juan"},
+        {id:2, name:"Pedro"},
+        {id:3, name:"Tomas"},
+    ]
+    export function App (){
+        return (
+            <>
+                {list.map(user () =>{
+                    return <p key={user.id}>
+                        {user.name}
+                    </p>
+                })}
+            </>
+        )
+    }
+
+    ```
