@@ -261,7 +261,7 @@ Solo se deben poner entre llaves expresiones que devuelven un resultado: (funcio
 
         const handleClick = () => setIsFollow(!isFollow);
 
-        return <Button onClick={handleClick()}>{isfollow}</Button>
+        return <Button onClick={handleClick()}>{`${isfollow}`}</Button>
     }
     ```
 
