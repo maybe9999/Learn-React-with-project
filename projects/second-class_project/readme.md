@@ -1,5 +1,4 @@
-Historia de usuario:
-Queremos crear un juego similar al Ta-Te-Ti que contenga 9 cuadros envueltos en un cuadro mas grande, es un juego por turnos de 2 jugadores donde una ves que haya 7 cuadros rellenados en una casilla de 9 cuadros se borre el ultimo, el juego se ejecutara hasta que se logre una linea donde 3 cuadros contengan el mismo elemento.
+Historia: Crear un juego similar al Ta-Te-Ti que contenga 9 cuadros envueltos en un cuadro mas grande, es un juego por turnos de 2 jugadores donde una ves que haya 7 cuadros rellenados en una casilla de 9 cuadros se borre el ultimo, el juego se ejecutara hasta que se logre una linea donde 3 cuadros contengan el mismo elemento.
 
 
 Requerimientos:
