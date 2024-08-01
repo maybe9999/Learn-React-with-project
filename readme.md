@@ -1,5 +1,10 @@
 <h1>React con proyectos</h1></br>
 
+### Glosario:
+- (Descripcion)[#descripción]
+- (Futuros Planes)[#futuros-planes]
+- (Tecnologias Usadas)[#tecnologías-usadas]
+
 # Descripción:
 
 <p> En este repositorio almaceno proyectos echos con react.</p>
