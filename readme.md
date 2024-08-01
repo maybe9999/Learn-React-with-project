@@ -1,9 +1,9 @@
 <h1>React con proyectos</h1></br>
 
 ### Glosario:
-- (Descripcion)[https://github.com/maybe9999/Learn-React-with-project/tree/main?tab=readme-ov-file#descripción]
-- (Futuros Planes)[#futuros-planes]
-- (Tecnologias Usadas)[#tecnologías-usadas]
+- [Descrpcion](https://github.com/maybe9999/Learn-React-with-project/tree/main?tab=readme-ov-file#descripción)
+- [Futuros Planes](#futuros-planes)
+- [Tecnologias Usadas](#tecnologías-usadas)
 
 # Descripción:
 
