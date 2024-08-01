@@ -1,13 +1,13 @@
 <h1>React con proyectos</h1></br>
 
 ### Glosario:
-- [Descrpcion](https://github.com/maybe9999/Learn-React-with-project/tree/main?tab=readme-ov-file#descripción)
+- [Descripción](#descripción)
 - [Futuros Planes](#futuros-planes)
-- [Tecnologias Usadas](#tecnologías-usadas)
+- [Tecnologías Usadas](#tecnologías-usadas)
+- [Enlaces a Proyectos](#enlaces-a-proyectos)
 
 # Descripción:
-
-<p> En este repositorio almaceno proyectos echos con react.</p>
+<p> En este repositorio almaceno proyectos echos con React.</p>
 
 # Futuros planes:
 En un futuro creare un sitio web que contendrá los enlaces a todos los proyectos contenidos aca.
@@ -16,5 +16,12 @@ En un futuro creare un sitio web que contendrá los enlaces a todos los proyecto
 - React
 - HTML
 - CSS
-- Javascript
+- JavaScript
+
+# Enlaces a Proyectos:
+- [1) Notas de clase - Definiciones](https://github.com/maybe9999/Learn-React-with-project/tree/main/projects/first-class_project)
+- [2) Ta Te Ti](https://github.com/maybe9999/Learn-React-with-project/tree/main/projects/second-class_project)
+- [3) ...](https://github.com/maybe9999/Learn-React-with-project/tree/main/projects/third-class_project)
+
+# 
 
