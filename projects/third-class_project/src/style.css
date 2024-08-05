@@ -1,0 +1,81 @@
+/*---------------- GENERAL*/
+*{
+    margin:0px;
+    padding: 0px;
+    font-family: system-ui;
+}
+
+:root{
+    --color-primario: rgb(20, 20, 20); /* Fondo, general*/
+    --color-secundario: rgb(0, 217, 255); /* Texto, general*/
+    --color-terciario: rgba(88, 2, 81, 0.774); /* Contenedores, general*/
+}
+
+a{
+    color: rgb(0, 174, 255);
+}
+/*---------------- FIN GENERAL*/
+
+/*---------------- BODY*/
+#body{
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+/*--------- HEADER*/
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    /* background-color: var(--color-secundario); */
+    height: calc(70px  + (9vh * 0.2) + (9vw * 0.1));
+}
+h1{
+    font-size: 1.9em;
+    padding: 0px;
+    margin: 0px;
+}
+.header nav li{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+.header nav li ul{
+    padding: 4%;
+    background-color: rgba(0, 92, 116, 0.432);
+    border-radius: 5%;
+}
+
+/*--------- FIN HEADER*/
+
+/*--------- MAIN*/
+.main{
+    margin: 0px 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+/*--------- FIN MAIN*/
+
+/*--------- FOOTER*/
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*--------- FIN FOOTER*/
+
+/*---------------- FIN BODY*/
