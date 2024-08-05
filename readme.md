@@ -22,7 +22,7 @@ En un futuro creare un sitio web que contendrá los enlaces a todos los proyecto
 ## Enlaces a Proyectos:
 - [1) Notas de clase - Definiciones](https://github.com/maybe9999/Learn-React-with-project/tree/main/projects/first-class_project)
 - [2) Ta Te Ti](https://github.com/maybe9999/Learn-React-with-project/tree/main/projects/second-class_project)
-- [3) ...](https://github.com/maybe9999/Learn-React-with-project/tree/main/projects/third-class_project)
+- [3) Consumo de Api](https://github.com/maybe9999/Learn-React-with-project/tree/main/projects/third-class_project)
 
 # 
 
