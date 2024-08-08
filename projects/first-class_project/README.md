@@ -279,3 +279,48 @@ Solo se deben poner entre llaves expresiones que devuelven un resultado: (funcio
     }
 
     ```
+
+### Instalacion:
+
+npm create vite@latest
+(opcion vanilla, js)
+
+**Instalando plugin de react**
+npm install @vitejs/plugin-react -E
+(-E : version exacta)
+
+**Instalando dependencias**
+npm install react react-dom react-router-dom -E
+
+(react-router: tiene el core del enrutado, no tiene la api suficiente para conectarse con el navegador
+react-router-dom: tiene la api de historia(la del navegador), ademas del core tambien tiene los bindings para conectarse con el navegador)
+
+**vite.config.js:**
+    ```
+    import { defineConfig } from 'vite'
+    import react from '@vitejs/plugin-react-swc'
+
+    // https://vitejs.dev/config/
+    export default defineConfig({
+    plugins: [react()],
+    })
+    ```
+
+**Punto de entrada:**
+    ```
+    import React from 'react'
+    import ReactDOM from 'react-dom/client'
+    import { App } from "./app" //Componente
+    import "./style.css"
+
+
+    const elementRoot = document.getElementById('root')
+
+    const root = ReactDOM.createRoot(elementRoot);
+
+    root.render(
+    <App />
+    );
+    ```
+
+    
