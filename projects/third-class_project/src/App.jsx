@@ -18,6 +18,7 @@ export function App(){
             <Route path="/inicio" element={<Inicio/>}/>
 
             <Route path="/api/" element={<Api/>}>
+                <Route path="q/:query" element={<SearchApi/>}/>
                 <Route path=":dirApi" element={<SearchApi/>}/>
             </Route>
             
