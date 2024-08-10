@@ -1,28 +1,32 @@
 import { useState, useEffect, Children } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams, useOutletContext } from "react-router-dom";
 
 const listApi = [
-    {"name": "Joke api",
+    {"name": "Joke",
     "link": "https://v2.jokeapi.dev/",
+    "dirPage" : "/api/q/",
     "id":1
     },
-    {"name": "Joke api",
+    {"name": "null1",
     "link": "https://v2.jokeapi.dev/",
+    "dirPage" : "/api/q/",
     "id":2
     },
-    {"name": "Joke api",
+    {"name": "null2",
     "link": "https://v2.jokeapi.dev/",
+    "dirPage" : "/api/q/",
     "id":3
     },
-    {"name": "Joke api",
+    {"name": "null3",
     "link": "https://v2.jokeapi.dev/",
+    "dirPage" : "/api/q/",
     "id":4
     },
 ]
 
-export function SearchApi(){
+export function ApiSearch(){
     let { dirApi } = useParams()
-    const listadoApi = listApi.filter(elemento => elemento.name == dirApi) // Nueva lista con api coincidentes con la búsqueda.
+    const listadoApi = listApi.filter(elemento => elemento.name.toLowerCase() == dirApi.toLowerCase()) // Nueva lista con api coincidentes con la búsqueda.
 
     function checkMatch(){
         if (!listadoApi.length) {
@@ -32,8 +36,10 @@ export function SearchApi(){
         } else {
             return (listadoApi.map((value, index) => {
                 return (
-                    <div key={dirApi} className="api-container-list-element prueba">
-                        <Link to={value.link}>{value.name}</Link>
+                    <div key={value.id} className="api-container-list-element prueba">
+                        <div>{`Api: ${value.name}`}</div><br/>
+                            <Link to={value.link} target="_blank">Link oficial</Link>
+                            <Link to={value.dirPage}>Query</Link>
                     </div>
                     )
             }))
@@ -46,11 +52,39 @@ export function SearchApi(){
     )
 }
 
+export function ApiQuery(){
+    const { query } = useParams()
+    const listadoApi = listApi.filter(elemento => elemento.name.toLowerCase() == query.toLowerCase())
+    const { listApiVisibility, setListApiVisibility } = useOutletContext()
+    console.log("esto es use outlet context: ", useOutletContext);
+    console.log("desde api query: ", listApiVisibility);
+    function checkMatch(){
+        if (!listadoApi.length) {
+            return (<p>{`Aca no hay nada ${query}`}</p>)
+        } else {
+            return (
+                <>
+                    <p>{"Aca haya algo" }</p>
+                </>
+            )
+        }
+    }
+    return(
+        <>
+            {checkMatch()}
+        </>
+    )
+}
+
 export function Api(){
     const [ url, setUrl ] = useState("");
     const [ titleName, setTitleName ] = useState("Listado de Apis:");
-    let { dirApi } = useParams()
     const [ listApiVisibility, setListApiVisibility ] = useState("");
+    const { dirApi } = useParams()
+
+    const updateVisibility = (newState) => {
+        setListApiVisibility(newState)
+    }
 
     useEffect(()=>{
         if (dirApi){
@@ -74,18 +108,21 @@ export function Api(){
                                 id="searchApi" 
                                 placeholder="Buscar API" 
                                 onInput={(e)=>{setUrl(e.target.value)}}></input>
-                        <Link key={url+toString(Math.floor(Math.random()*100))} className="api-container-header-search-btn" to={`/api/${url}`}>Search</Link>
+                        {/*key={url+toString(Math.floor(Math.random()*100))}*/}
+                        <Link className="api-container-header-search-btn" to={`/api/${url ? "s/"+url:""}`}>Search</Link>
                     </div>
                 </div>
                 <div className="api-container-list search">
-                    <Outlet/>
+                    <Outlet context={{ listApiVisibility, setListApiVisibility }}/>
                 </div>
 
-                <div className={"api-container-list search"+listApiVisibility}>
+                <div className={"api-container-list search "+listApiVisibility}>
                     {listApi.map((value, index) => {
                         return(
                             <div className="api-container-list-element" key={value.id}>
-                                <Link to={value.link}>{value.name}</Link>
+                                <div>{`Api: ${value.name}`}</div><br/>
+                                <Link to={value.link} target="_blank">Link oficial</Link>
+                                <Link to={`${value.dirPage}${value.name}`}>Query</Link>
                             </div>
                             )
                         })

@@ -4,11 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import { Header} from "./Header.jsx"
 import { Footer } from "./Footer.jsx"
 
-import { Api, SearchApi} from "./Api";
+import { Api, ApiSearch, ApiQuery} from "./Api";
 import { Redes } from "./redes";
 import { Inicio } from "./inicio.jsx";
 
-
+/* Esto es Main, Main contiene sección inicio, Api, Redes */
 export function App(){
     return (
         <>
@@ -18,8 +18,8 @@ export function App(){
             <Route path="/inicio" element={<Inicio/>}/>
 
             <Route path="/api/" element={<Api/>}>
-                <Route path="q/:query" element={<SearchApi/>}/>
-                <Route path=":dirApi" element={<SearchApi/>}/>
+                <Route path="q/:query" element={<ApiQuery />}/>
+                <Route path="s/:dirApi" element={<ApiSearch/>}/>
             </Route>
             
             <Route path="/redes" element={<Redes/>}/>
