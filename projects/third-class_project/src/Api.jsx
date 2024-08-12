@@ -1,5 +1,7 @@
 import { useState, useEffect, Children } from "react";
-import { Link, Outlet, useParams, useOutletContext } from "react-router-dom";
+import { Link, Outlet, useParams, useNavigate  } from "react-router-dom";
+
+//Consultas :
 
 const listApi = [
     {"name": "Joke",
@@ -22,7 +24,7 @@ const listApi = [
     "dirPage" : "/api/q/",
     "id":4
     },
-]
+];
 
 export function ApiSearch(){
     let { dirApi } = useParams()
@@ -31,7 +33,7 @@ export function ApiSearch(){
     function checkMatch(){
         if (!listadoApi.length) {
             return (
-                <p>{"Sin resultados"}</p>
+                <p>{`Sin resultados para: ${dirApi}`}</p>
                 )
         } else {
             return (listadoApi.map((value, index) => {
@@ -55,16 +57,16 @@ export function ApiSearch(){
 export function ApiQuery(){
     const { query } = useParams()
     const listadoApi = listApi.filter(elemento => elemento.name.toLowerCase() == query.toLowerCase())
-    const { listApiVisibility, setListApiVisibility } = useOutletContext()
-    console.log("esto es use outlet context: ", useOutletContext);
-    console.log("desde api query: ", listApiVisibility);
+    /* const { listApiVisibility, setListApiVisibility } = useOutletContext() */
     function checkMatch(){
         if (!listadoApi.length) {
+           /*  setListApiVisibility(""); */
             return (<p>{`Aca no hay nada ${query}`}</p>)
         } else {
+            /* setListApiVisibility(" hidden"); */
             return (
                 <>
-                    <p>{"Aca haya algo" }</p>
+                    <p>{`Aca hay algo ${query}`}</p>
                 </>
             )
         }
@@ -78,24 +80,25 @@ export function ApiQuery(){
 
 
 export function Api(){
-    const [ url, setUrl ] = useState("");
-    const [ titleName, setTitleName ] = useState("Listado de Apis:");
-    const [ listApiVisibility, setListApiVisibility ] = useState("");
-    const { dirApi } = useParams()
-
-    const updateVisibility = (newState) => {
-        setListApiVisibility(newState)
-    }
+    const [ url, setUrl ] = useState(""); //Url de busqueda, contiene el texto ingresado x user.
+    const [ titleName, setTitleName ] = useState("Listado de Apis:"); 
+    const [ listApiVisibility, setListApiVisibility ] = useState(""); //Para ocultar el listado de apis.
+    const { dirApi, query } = useParams();
+    const navigate = useNavigate();
 
     useEffect(()=>{
-        if (dirApi){
-            setTitleName("Resultado de busqueda:");
+        if (dirApi || query){
+            setTitleName("Resultado de búsqueda:");
             setListApiVisibility(" hidden");
         }else {
             setTitleName("Listado de Apis:");
             setListApiVisibility("");
         }
-    },[dirApi])
+    },[dirApi, query])
+
+    useEffect(()=>{
+        navigate(`/api/${url ? "s/"+url:""}`)
+    },[url])
 
     return (
         <main className="main">
@@ -110,11 +113,11 @@ export function Api(){
                                 placeholder="Buscar API" 
                                 onInput={(e)=>{setUrl(e.target.value)}}></input>
                         {/*key={url+toString(Math.floor(Math.random()*100))}*/}
-                        <Link className="api-container-header-search-btn" to={`/api/${url ? "s/"+url:""}`}>Search</Link>
+                        {/* <Link className="api-container-header-search-btn" to={`/api/${url ? "s/"+url:""}`}>Search</Link> */}
                     </div>
                 </div>
                 <div className="api-container-list search">
-                    <Outlet context={{ listApiVisibility, setListApiVisibility }}/>
+                    <Outlet/>
                 </div>
 
                 <div className={"api-container-list search "+listApiVisibility}>
