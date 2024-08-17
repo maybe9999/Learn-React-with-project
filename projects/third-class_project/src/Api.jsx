@@ -1,6 +1,8 @@
 import { useState, useEffect, Children } from "react";
 import { Link, Outlet, useParams, useNavigate  } from "react-router-dom";
 
+import { ApiJoke } from "./fecth/Joke.jsx";
+
 //Consultas :
 
 const listApi = [
@@ -66,7 +68,7 @@ export function ApiQuery(){
             /* setListApiVisibility(" hidden"); */
             return (
                 <>
-                    <p>{`Aca hay algo ${query}`}</p>
+                    <ApiJoke />
                 </>
             )
         }
