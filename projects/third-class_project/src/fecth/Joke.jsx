@@ -55,7 +55,7 @@ export function ApiJoke({category="Any", lang="lang=en", blacklistFlags="", type
     useEffect(() => {
         const data = {
                     'text':[jokes.joke || "Hello, world!"],
-                    'target_lang':"ES",
+                    'target_lang':"es",
                     'source_lang':"EN",
                     'target_url':TRANSLATE_URL
                 }
@@ -70,7 +70,7 @@ export function ApiJoke({category="Any", lang="lang=en", blacklistFlags="", type
             }
         }).then(res => {
             console.log("res:",res);
-            return res.json()})
+            /* return res.json() */})
         .then(data => {
                 console.log("data:",data);
                 setJokeTranslation(data)
