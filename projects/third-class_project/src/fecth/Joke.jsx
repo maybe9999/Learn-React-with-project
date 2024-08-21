@@ -68,16 +68,9 @@ export function ApiJoke({category="Any", lang="lang=en", blacklistFlags="", type
             headers: {
                 'Content-Type':'application/json',
             }
-        }).then(res => {
-            console.log("res:",res);
-            /* return res.json() */})
-        .then(data => {
-                console.log("data:",data);
-                setJokeTranslation(data)
-                }
-            )
+        }).then(res =>res.json())
+        .then(data => setJokeTranslation(data[0].text))
         .catch(err => console.log(err))
-
     }, [jokes])
 
     return (
