@@ -44,40 +44,36 @@ export function ApiJoke({category="Any", lang="lang=en", blacklistFlags="", type
 
     const [newChiste, setNewChiste] = useState(false);
 
+    //Query api Joke:
     useEffect(() => {
         let urlTemp = `${JOKES_URL}${category}?${lang}&${blacklistFlags}&${type}&${contains}&${idRange}&${amount}`;
         console.log(urlTemp);
         fetch(urlTemp)
             .then(res => res.json())
-            .then(data => setJokes(data))
+            .then(data => {setJokes(data)
+            setJokeTranslation("Traduciendo...")})
     }, [newChiste])
 
+    //Fetch api Traducir:
     useEffect(() => {
-        const data = {
-                    'text':[jokes.joke || "Hello, world!"],
-                    'target_lang':"es",
-                    'source_lang':"EN",
-                    'target_url':TRANSLATE_URL
-                }
-
-        console.log("a traducir:",data.text);
+        const text= jokes.joke;
+        const target_lang= "es";
         
-        fetch(`${CORS_ANYWHERE}?data=${JSON.stringify(data)}`, {
+        fetch(`${CORS_ANYWHERE}?text=${text}&target_lang=${target_lang}`, {
             method: 'POST',
-            mode: "no-cors",
             headers: {
                 'Content-Type':'application/json',
             }
-        }).then(res =>res.json())
-        .then(data => setJokeTranslation(data[0].text))
+        }).then(res => res.json())
+        .then(result => setJokeTranslation(result.text))
         .catch(err => console.log(err))
     }, [jokes])
 
     return (
         <>
             <h2>Joke Api</h2>
-            {`Chiste: ${jokes.joke}`}<br/>
-            {`Chiste traducido: ${jokeTranslation}`}
+            {`Chiste: \n${jokes.joke}`}<br/>
+            {`Chiste traducido:\n ${jokeTranslation}`}
             <button onClick={() => setNewChiste(!newChiste)}>Nuevo Chiste</button>
         </>
     );
