@@ -2,6 +2,7 @@ import { useState, useEffect, Children } from "react";
 import { Link, Outlet, useParams, useNavigate  } from "react-router-dom";
 
 import { ApiJoke } from "./fecth/Joke.jsx";
+import { ApIpGeo } from "./fecth/ApIpGeo.jsx";
 
 //Consultas :
 
@@ -9,25 +10,31 @@ const listApi = [
     {"name": "Joke",
     "link": "https://v2.jokeapi.dev/",
     "dirPage" : "/api/q/",
-    "id":1
+    "id":1,
+    "component": <ApiJoke/>
     },
-    {"name": "null1",
-    "link": "https://v2.jokeapi.dev/",
+    {"name": "Ip y Geo",
+    "link": "https://api.ipregistry.co/?key=td9qudbcx0xrd45i", 
+    "link2": "https://ipapi.co/json/",
     "dirPage" : "/api/q/",
-    "id":2
+    "id":2,
+    "component": <ApIpGeo/>
     },
     {"name": "null2",
     "link": "https://v2.jokeapi.dev/",
     "dirPage" : "/api/q/",
-    "id":3
+    "id":3,
+    "component": <ApiJoke/>
     },
     {"name": "null3",
     "link": "https://v2.jokeapi.dev/",
     "dirPage" : "/api/q/",
-    "id":4
+    "id":4,
+    "component": <ApiJoke/>
     },
 ];
 
+//Buscador de Api
 export function ApiSearch(){
     let { dirApi } = useParams()
     const listadoApi = listApi.filter(elemento => elemento.name.toLowerCase() == dirApi.toLowerCase()) // Nueva lista con api coincidentes con la búsqueda.
@@ -56,21 +63,16 @@ export function ApiSearch(){
     )
 }
 
+//Aca se maneja hacia que api se hace la consulta
 export function ApiQuery(){
     const { query } = useParams()
+    //Se buscan coincidencias coincidencias con Apis existentes
     const listadoApi = listApi.filter(elemento => elemento.name.toLowerCase() == query.toLowerCase())
-    /* const { listApiVisibility, setListApiVisibility } = useOutletContext() */
     function checkMatch(){
-        if (!listadoApi.length) {
-           /*  setListApiVisibility(""); */
-            return (<p>{`Aca no hay nada ${query}`}</p>)
-        } else {
-            /* setListApiVisibility(" hidden"); */
-            return (
-                <>
-                    <ApiJoke />
-                </>
-            )
+        if (!listadoApi.length) <p>{`Aca no hay nada ${query}`}</p>
+        else {
+            let componente = listadoApi.map((elemento) => elemento.component);
+            return (componente)
         }
     }
     return(
@@ -79,7 +81,6 @@ export function ApiQuery(){
         </>
     )
 } 
-
 
 export function Api(){
     const [ url, setUrl ] = useState(""); //Url de busqueda, contiene el texto ingresado x user.
@@ -114,8 +115,6 @@ export function Api(){
                                 id="searchApi" 
                                 placeholder="Buscar API" 
                                 onInput={(e)=>{setUrl(e.target.value)}}></input>
-                        {/*key={url+toString(Math.floor(Math.random()*100))}*/}
-                        {/* <Link className="api-container-header-search-btn" to={`/api/${url ? "s/"+url:""}`}>Search</Link> */}
                     </div>
                 </div>
                 <div className="api-container-list search">

@@ -66,7 +66,9 @@ export function ApiJoke({category="Any", lang="lang=en", blacklistFlags="", type
             }
         }).then(res => res.json())
         .then(result => setJokeTranslation(result.text))
-        .catch(err => console.log(err))
+        .catch(err => {
+            setJokeTranslation("Error en la traduccion.")
+            console.log(err)})
     }, [jokes])
 
     return (
